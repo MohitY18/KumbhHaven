@@ -1,0 +1,39 @@
+<style>
+  .navbar-brand-centered {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+     font-size: 2rem;      /* Increased font size */
+    font-weight: 700;     /* Bolder weight */
+    line-height: 1;  
+    color:  #dc445ef9;
+  }
+</style>
+
+<nav class="navbar sticky-top navbar-expand-md bg-light border-bottom">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/listing">
+      <i class="fa-regular fa-compass"></i>
+      <span class="d-md-none">KumbhHaven</span>
+    </a>
+    <span class="navbar-brand-centered d-none d-md-block">KumbhHaven</span>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="/listing">Explore</a>
+      </div>
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listing/new">Add Your Place</a>
+        <% if(!currUser){ %>
+          <a class="nav-link" href="/signup"><b>Signup</b></a>
+          <a class="nav-link" href="/login"><b>Login</b></a>
+        <% } %>
+        <% if(currUser){ %>
+          <a class="nav-link" href="/logout"><b>Logout</b></a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>

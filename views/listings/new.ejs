@@ -1,0 +1,51 @@
+<%layout('./layouts/boilerplate.ejs')%>
+<body>
+
+    <div class="row mt-3"> <!-- Margin from top -->
+        <div class="col-8 offset-2">  <!-- To occupy 8out of 12 in area  and offset means spacing from left-->
+      
+        <h3>Create New Listing</h3>
+        <form action="/listing" method="post"  novalidate  class="needs-validation" enctype="multipart/form-data"> <!-- This novalidate and needs-validation is for proper validation on basis of schema-->
+           <div class="mb-3">  <!-- To add margin to bottom of 3 -->
+             <label for="title" class="form-label">Title:</label>
+            <input type="text" name="list[title]" placeholder="Enter Title" class="form-control"  required> <!-- Using this way in name we will directly get all content in form of object in List -->
+             <div class="valid-feedback">Title looks good!</div>     <!--This msg will appear when user have correctly entered the needed validations according to schema-->
+         </div>
+          
+           <div class="mb-3">  
+            <label for="description" class="form-label">Description:</label>
+          <textarea name="list[description]" class="form-control" required></textarea>
+          <div class="valid-feedback">Description looks good!</div>
+          <div class="invalid-feedback">Please enter short description!</div><!--This msg will appear when user have not correctly entered the needed validations according to schema-->
+           </div>
+
+           <div class="mb-3">  
+            <label for="image" class="form-label">Upload Image:</label>
+            <input type="file"  name="list[image]" placeholder="Image URL/Link" class="form-control" required>
+           </div>
+          
+        <div class="row">   <!-- To bring price and country in same row -->
+           <div class="mb-3 col-md-4"> <!-- It means ki medium se bade tk ke liye 4:8 ka ratio rakhe -->
+            <label for="price" class="form-label">Price:</label>
+            <input name="list[price]"  type="number" placeholder="Price" class="form-control" required>
+            <div class="valid-feedback">Price looks good!</div>
+            <div class="invalid-feedback">Please enter valid price!</div>
+         </div>
+         
+           <div class="mb-3 col-md-8">  
+            <label for="country" class="form-label">Country</label>
+            <input type="text" name="list[country]"  placeholder="Country" class="form-control" required>
+            <div class="invalid-feedback">Country name should be valid!</div>
+         </div>
+        </div>
+           <div class="mb-3">  
+                <label for="location" class="form-label">Location:</label>
+                <input type="text"  name="list[location]" placeholder="Location" class="form-control" required>
+                <div class="invalid-feedback">Location name should be valid!</div>
+            </div>
+                
+          <button class="btn btn-dark mt-3 new-btn">Add</button>
+    </form>
+     </div>
+  </div>
+</body>

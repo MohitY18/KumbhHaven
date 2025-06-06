@@ -1,0 +1,15 @@
+<% if(success && success.length){ %>
+    <div class="alert alert-dismissible fade show alert-success col-6 offset-3" role="alert">
+        <%=success%>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+<%}%>
+<!-- As we have used an middleware in index.js for flash i.e res.local.success which means an array has been created with
+  name of success and if it contains message then print it -->
+
+<% if(error && error.length){ %>
+    <div class="alert alert-dismissible fade show alert-danger col-6 offset-3" role="alert">
+        <%=error%>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+<%}%>
