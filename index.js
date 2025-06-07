@@ -12,6 +12,7 @@ const ejsMate = require('ejs-mate');
 const ExpressError = require('./utils/ExpressError.js');
 const Review = require('./models/review.js'); //Aquire schema of review;
 const session = require("express-session");
+const MongoStore = require('connect-mongo');
 
 const listingRouter = require("./routing/listing.js"); //Aquiring the routes of specific path as defined in routing file;
 const reviewsRouter = require('./routing/reviews.js');
@@ -31,8 +32,19 @@ app.use(express.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname,'public')));
 app.engine('ejs',ejsMate);
+
+const store = MongoStore.create({
+    mongoUrl:dbUrl,
+    crypto:{
+        secret: process.env.SECRET,
+    },
+    touchAfter: 24*3600
+});
+store.on("error",()=>{
+    console.error("Error in mongo session store",err);
+})
 app.use(session({
-      secret:"mysupersecretcode",
+      secret: process.env.SECRET,
       resave:false,
       saveUninitialized:true,
       cookie:{
@@ -62,10 +74,12 @@ app.get("/demouser",async(req,res)=>{
    res.send(registeredUser);
 
 });
-*/
+*/ 
+
+const dbUrl = process.env.ATLASDB_URL;
 
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/wanderlust');
+  await mongoose.connect(dbUrl);
 }
 main().then(()=>{console.log("Connected to DB")})
 .catch(err => console.log(err));
