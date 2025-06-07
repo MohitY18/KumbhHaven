@@ -33,6 +33,7 @@ app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname,'public')));
 app.engine('ejs',ejsMate);
 
+const dbUrl = process.env.ATLASDB_URL;
 const store = MongoStore.create({
     mongoUrl:dbUrl,
     crypto:{
@@ -76,7 +77,8 @@ app.get("/demouser",async(req,res)=>{
 });
 */ 
 
-const dbUrl = process.env.ATLASDB_URL;
+
+
 
 async function main() {
   await mongoose.connect(dbUrl);
